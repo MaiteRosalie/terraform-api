@@ -1,0 +1,27 @@
+{
+  "name": "items-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --ext .ts --max-warnings 0",
+    "ci:check": "pnpm run typecheck && pnpm run lint",
+    "zip": "zip -j ../items-api.zip dist/index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3",
+    "@aws-sdk/lib-dynamodb": "^3",
+    "uuid": "^11"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8",
+    "@types/node": "^25.9.2",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "esbuild": "^0.25",
+    "eslint": "^10.4.1",
+    "typescript": "^5"
+  }
+}
