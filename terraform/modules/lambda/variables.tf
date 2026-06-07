@@ -16,5 +16,5 @@ variable "table_arn" {
 
 variable "lambda_zip_path" {
   type    = string
-  default = "../../../services/items-api.zip"
+  default = "../services/items-api.zip"
 }

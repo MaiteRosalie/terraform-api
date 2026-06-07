@@ -6,10 +6,5 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.0"
     }
-
-    datadog = {
-      source  = "DataDog/datadog"
-      version = "~> 3.0"
-    }
   }
 }

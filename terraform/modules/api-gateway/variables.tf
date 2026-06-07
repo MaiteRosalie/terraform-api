@@ -13,3 +13,18 @@ variable "lambda_arn" {
 variable "lambda_function_name" {
   type = string
 }
+
+variable "allowed_origins" {
+  type    = list(string)
+  default = ["https://example.com"]
+}
+
+variable "allowed_methods" {
+  type    = list(string)
+  default = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+}
+
+variable "allowed_headers" {
+  type    = list(string)
+  default = ["Content-Type", "Authorization"]
+}

@@ -1,6 +1,13 @@
 resource "aws_apigatewayv2_api" "this" {
   name          = "${var.project_name}-${var.environment}"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = var.allowed_origins
+    allow_methods = var.allowed_methods
+    allow_headers = var.allowed_headers
+    allow_credentials = false
+    max_age = 3600
+  }
 }
 
 resource "aws_apigatewayv2_integration" "lambda" {
@@ -11,6 +18,7 @@ resource "aws_apigatewayv2_integration" "lambda" {
   integration_uri        = var.lambda_arn
   payload_format_version = "2.0"
 }
+
 
 resource "aws_apigatewayv2_route" "proxy" {
   api_id = aws_apigatewayv2_api.this.id
