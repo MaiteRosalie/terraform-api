@@ -16,11 +16,3 @@ body:json {
     "price": 1.50
   }
 }
-
-script:post-response {
-  // Store the item ID for later use
-  if (res.getStatus() === 201 || res.getStatus() === 200) {
-    const body = res.getBody();
-    bru.setVar("item_id", body.id);
-  }
-}
