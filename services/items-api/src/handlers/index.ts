@@ -6,45 +6,44 @@ import { handler as getItem } from "./get-item.js";
 import { handler as updateItem } from "./update-item.js";
 import { handler as deleteItem } from "./delete-item.js";
 
-export async function handler(
-  event: APIGatewayProxyEventV2
-): Promise<APIGatewayProxyResultV2> {
-  const method = event.requestContext.http.method;
-  const path = event.rawPath;
+function pathSegments(path: string) {
+	return path.replace(/(^\/+|\/+$)/g, "").split("/").filter(Boolean);
+}
 
-  // Health check
-  if (method === "GET" && path === "/") {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ ok: true }),
-    };
-  }
+export async function handler(event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> {
+	const method = event.requestContext?.http?.method ?? (event as any).httpMethod;
+	const rawPath = event.rawPath ?? (event as any).path ?? "/";
 
-  // Create
-  if (method === "POST" && path === "/items") {
-    return createItem(event as any);
-  }
+	const segments = pathSegments(rawPath);
 
-  // Extract ID safely from API Gateway v2
-  const id = event.pathParameters?.id;
+	// Root health check
+	if ((rawPath === "/" || rawPath === "") && method === "GET") {
+		return { statusCode: 200, body: JSON.stringify({ message: "ok" }) };
+	}
 
-  // Get
-  if (method === "GET" && id) {
-    return getItem(event as any);
-  }
+	// POST /items -> create
+	if (method === "POST" && (segments.length === 0 || segments[0] === "items")) {
+		return createItem(event as any);
+	}
 
-  // Update
-  if (method === "PUT" && id) {
-    return updateItem(event as any);
-  }
+	// GET /items/{id} -> get
+	if (method === "GET" && segments[0] === "items" && segments[1]) {
+		// populate pathParameters for downstream handlers
+		(event as any).pathParameters = { id: segments[1] };
+		return getItem(event as any);
+	}
 
-  // Delete
-  if (method === "DELETE" && id) {
-    return deleteItem(event as any);
-  }
+	// PUT /items/{id} -> update
+	if ((method === "PUT" || method === "PATCH") && segments[0] === "items" && segments[1]) {
+		(event as any).pathParameters = { id: segments[1] };
+		return updateItem(event as any);
+	}
 
-  return {
-    statusCode: 404,
-    body: JSON.stringify({ message: "not found" }),
-  };
+	// DELETE /items/{id} -> delete
+	if (method === "DELETE" && segments[0] === "items" && segments[1]) {
+		(event as any).pathParameters = { id: segments[1] };
+		return deleteItem(event as any);
+	}
+
+	return { statusCode: 404, body: JSON.stringify({ message: "not found" }) };
 }
