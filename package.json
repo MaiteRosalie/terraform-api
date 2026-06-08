@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "deploy": "npm run deploy:dev -workspace=terraform",
+    "pack": "npm run pack -workspace=services/items-api",
+    "update": "npm run pack && npm run deploy"
+  },
+  "workspaces": [
+    "services/items-api",
+    "terraform"
+  ]
+}
