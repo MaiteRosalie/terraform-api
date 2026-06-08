@@ -3,7 +3,8 @@
   "scripts": {
     "deploy": "npm run deploy:dev -workspace=terraform",
     "pack": "npm run pack -workspace=services/items-api",
-    "update": "npm run pack && npm run deploy"
+    "update": "npm run pack && npm run deploy",
+    "destroy": "npm run destroy -workspace=terraform"
   },
   "workspaces": [
     "services/items-api",

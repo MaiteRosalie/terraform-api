@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "deploy:dev": "terraform apply -var-file=dev.tfvars -auto-approve",
-    "deploy:prod": "terraform apply -var-file=prod.tfvars -auto-approve"
+    "deploy": "terraform apply -var-file=dev.tfvars -auto-approve",
+    "destroy": "terraform destroy -auto-approve"
   }
 }

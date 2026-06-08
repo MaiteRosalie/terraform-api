@@ -57,7 +57,7 @@ resource "aws_lambda_function" "this" {
   source_code_hash = filebase64sha256(var.lambda_zip_path)
 
   role    = aws_iam_role.lambda_role.arn
-  runtime = "nodejs20.x"
+  runtime = "nodejs24.x"
 
   handler = "index.handler"
 
