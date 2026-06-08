@@ -6,4 +6,10 @@ meta {
 
 get {
   url: {{base_url}}/items/{{item_id}}
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  item_id: 123
 }

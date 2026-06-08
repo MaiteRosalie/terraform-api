@@ -3,11 +3,12 @@
 import { randomUUID } from "crypto";
 
 import * as repository from "../repositories/item-repository.js";
+import type { ItemInput } from "../validators/item.schema.js";
 
-export async function createItem(name: string) {
+export async function createItem(item: ItemInput) {
   return repository.create({
     id: randomUUID(),
-    name
+    ...item
   });
 }
 
@@ -17,9 +18,9 @@ export async function getItem(id: string) {
 
 export async function updateItem(
   id: string,
-  name: string
+  item: ItemInput
 ) {
-  await repository.update(id, name);
+  await repository.update(id, item);
 }
 
 export async function deleteItem(id: string) {

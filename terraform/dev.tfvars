@@ -1,3 +1,3 @@
 aws_region      = "us-east-1"
-environment     = "local"
+environment     = "dev"
 project_name    = "items-api"

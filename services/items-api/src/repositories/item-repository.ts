@@ -9,6 +9,7 @@ import {
 
 import { dynamodb } from "../infrastructure/dynamodb.js";
 import { Item } from "../types/item";
+import type { ItemInput } from "../validators/item.schema.js";
 
 const tableName = process.env.TABLE_NAME!;
 
@@ -45,18 +46,20 @@ export async function remove(id: string) {
 
 export async function update(
   id: string,
-  name: string
+  item: ItemInput
 ) {
   await dynamodb.send(
     new UpdateCommand({
       TableName: tableName,
       Key: { id },
-      UpdateExpression: "SET #name = :name",
+      UpdateExpression: "SET #name = :name, #price = :price",
       ExpressionAttributeNames: {
-        "#name": "name"
+        "#name": "name",
+        "#price": "price"
       },
       ExpressionAttributeValues: {
-        ":name": name
+        ":name": item.name,
+        ":price": item.price
       }
     })
   );

@@ -30,7 +30,7 @@ export async function handler(
     });
   }
 
-  await updateItem(id, parsed.data.name);
+  await updateItem(id, parsed.data);
 
   return json(204, null);
 }

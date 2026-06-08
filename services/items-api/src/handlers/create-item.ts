@@ -22,7 +22,7 @@ export async function handler(
     });
   }
 
-  const item = await createItem(parsed.data.name);
+  const item = await createItem(parsed.data);
 
   return json(201, item);
 }

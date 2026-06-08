@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node esbuild.mjs",
-    "dev": "tsc --watch",
+    "dev": "sam local start-api --template template.yaml",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}' --ext .ts --max-warnings 0",
     "check": "pnpm run typecheck && pnpm run lint",
