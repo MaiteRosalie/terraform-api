@@ -16,7 +16,7 @@ variable "lambda_function_name" {
 
 variable "allowed_origins" {
   type    = list(string)
-  default = ["https://example.com"]
+  default = ["https://example.com", "http://192.168.0.8:3000"]
 }
 
 variable "allowed_methods" {

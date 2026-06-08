@@ -1,0 +1,26 @@
+meta {
+  name: Create Item
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/items
+  body: json
+}
+
+body:json {
+  {
+    "name": "Test Item",
+    "description": "This is a test item",
+    "price": 99.99
+  }
+}
+
+script:post-response {
+  // Store the item ID for later use
+  if (res.getStatus() === 201 || res.getStatus() === 200) {
+    const body = res.getBody();
+    bru.setVar("item_id", body.id);
+  }
+}

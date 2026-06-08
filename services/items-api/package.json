@@ -7,13 +7,15 @@
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint 'src/**/*.{ts,tsx}' --ext .ts --max-warnings 0",
-    "ci:check": "pnpm run typecheck && pnpm run lint",
+    "check": "pnpm run typecheck && pnpm run lint",
+    "pack": "pnpm run build && pnpm run zip",
     "zip": "zip -j ../items-api.zip dist/index.js"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3",
     "@aws-sdk/lib-dynamodb": "^3",
-    "uuid": "^11"
+    "uuid": "^11",
+    "zod": "^4"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8",

@@ -1,0 +1,18 @@
+meta {
+  name: Update Item
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/items/{{item_id}}
+  body: json
+}
+
+body:json {
+  {
+    "name": "Updated Test Item",
+    "description": "This item has been updated",
+    "price": 149.99
+  }
+}

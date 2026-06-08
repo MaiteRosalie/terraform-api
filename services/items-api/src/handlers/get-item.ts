@@ -12,7 +12,7 @@ export async function handler(
 
   if (!id) {
     return json(400, {
-      message: "id is required"
+      message: "Item id is required"
     });
   }
 
@@ -20,7 +20,7 @@ export async function handler(
 
   if (!item) {
     return json(404, {
-      message: "not found"
+      message: "Item not found"
     });
   }
 
