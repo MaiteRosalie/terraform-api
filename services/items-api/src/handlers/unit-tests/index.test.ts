@@ -1,13 +1,13 @@
-import { handler } from "./index";
-import { handler as createItem } from "./create-item";
-import { handler as getItem } from "./get-item";
-import { handler as updateItem } from "./update-item";
-import { handler as deleteItem } from "./delete-item";
+import { handler } from "../index";
+import { handler as createItem } from "../create-item";
+import { handler as getItem } from "../get-item";
+import { handler as updateItem } from "../update-item";
+import { handler as deleteItem } from "../delete-item";
 
-jest.mock("./create-item");
-jest.mock("./get-item");
-jest.mock("./update-item");
-jest.mock("./delete-item");
+jest.mock("../create-item");
+jest.mock("../get-item");
+jest.mock("../update-item");
+jest.mock("../delete-item");
 
 describe("Router Handler", () => {
   beforeEach(() => {
