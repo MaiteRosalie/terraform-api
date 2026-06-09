@@ -2,8 +2,8 @@
 
 import { APIGatewayProxyEventV2 } from "aws-lambda";
 
-import { getItem } from "../services/item-service.js";
-import { json } from "../utils/response.js";
+import { getItem } from "../services/item-service";
+import { json } from "../utils/response";
 
 export async function handler(
   event: APIGatewayProxyEventV2

@@ -3,9 +3,9 @@
 import { APIGatewayProxyEventV2 } from "aws-lambda";
 import { z } from "zod";
 
-import { updateItem } from "../services/item-service.js";
-import { itemSchema } from "../validators/item.schema.js";
-import { json } from "../utils/response.js";
+import { updateItem } from "../services/item-service";
+import { itemSchema } from "../validators/item.schema";
+import { json } from "../utils/response";
 
 export async function handler(
   event: APIGatewayProxyEventV2

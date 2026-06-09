@@ -7,9 +7,9 @@ import {
   UpdateCommand
 } from "@aws-sdk/lib-dynamodb";
 
-import { dynamodb } from "../infrastructure/dynamodb.js";
+import { dynamodb } from "../infrastructure/dynamodb";
 import { Item } from "../types/item";
-import type { ItemInput } from "../validators/item.schema.js";
+import type { ItemInput } from "../validators/item.schema";
 
 const tableName = process.env.TABLE_NAME!;
 

@@ -2,8 +2,8 @@
 
 import { randomUUID } from "crypto";
 
-import * as repository from "../repositories/item-repository.js";
-import type { ItemInput } from "../validators/item.schema.js";
+import * as repository from "../repositories/item-repository";
+import type { ItemInput } from "../validators/item.schema";
 
 export async function createItem(item: ItemInput) {
   return repository.create({
