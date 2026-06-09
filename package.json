@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "deploy": "npm run deploy -workspace=terraform",
-    "pack": "npm run pack -workspace=services/items-api",
-    "update": "npm run pack && npm run deploy",
     "test": "npm run test -workspace=services/items-api",
-    "destroy": "npm run destroy -workspace=terraform"
+    "pack": "npm run pack -workspace=services/items-api",
+    "init": "npm run init -workspace=terraform",
+    "deploy": "npm run deploy -workspace=terraform",
+    "destroy": "npm run destroy -workspace=terraform",
+    "update": "npm run pack && npm run deploy"
   },
   "workspaces": [
     "services/items-api",
